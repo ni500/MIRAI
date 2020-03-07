@@ -2302,14 +2302,264 @@ impl<'analysis, 'compilation, 'tcx, E> MirVisitor<'analysis, 'compilation, 'tcx,
                 result.unwrap_or_else(|| abstract_value::BOTTOM.into())
             }
             KnownNames::StdIntrinsicsArithOffset => self.handle_arith_offset(call_info),
+            KnownNames::StdIntrinsicsBitreverse => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsBswap => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsCeilf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsCeilf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsCopysignf32 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsCopysignf64 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsCosf32 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsCosf64 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsCtlz => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsCtlzNonzero => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
             KnownNames::StdIntrinsicsCtpop => {
                 checked_assume!(call_info.actual_args.len() == 1);
                 call_info.actual_args[0].1.count_ones()
             }
+            KnownNames::StdIntrinsicsCttz => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsCttzNonzero => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsExp2f32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsExp2f64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsExpf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsExpf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsFabsf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsFabsf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsFaddFast => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsFdivFast => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsFloorf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsFloorf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsFmaf32 => {
+                checked_assume!(call_info.actual_args.len() == 3);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsFmaf64 => {
+                checked_assume!(call_info.actual_args.len() == 3);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsFmulFast => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsFremFast => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsFsubFast => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsLog10f32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsLog10f64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsLog2f32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsLog2f64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsLogf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsLogf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsMaxnumf32 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsMaxnumf64 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsMinnumf32 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsMinnumf64 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
             KnownNames::StdIntrinsicsMulWithOverflow => {
                 self.handle_checked_binary_operation(call_info)
             }
+            KnownNames::StdIntrinsicsNearbyintf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsNearbyintf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
             KnownNames::StdIntrinsicsOffset => self.handle_offset(call_info),
+            KnownNames::StdIntrinsicsPowf32 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsPowf64 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsPowif32 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsPowif64 => {
+                checked_assume!(call_info.actual_args.len() == 2);
+                call_info.actual_args[0]
+                    .1
+                    .addition(call_info.actual_args[1].1.clone())
+            }
+            KnownNames::StdIntrinsicsRintf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsRintf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsRoundf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsRoundf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsSinf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsSinf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsSqrtf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsSqrtf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsTruncf32 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
+            KnownNames::StdIntrinsicsTruncf64 => {
+                checked_assume!(call_info.actual_args.len() == 1);
+                call_info.actual_args[0].1.count_ones()
+            }
             KnownNames::StdIntrinsicsTransmute => {
                 checked_assume!(call_info.actual_args.len() == 1);
                 call_info.actual_args[0].1.clone()
